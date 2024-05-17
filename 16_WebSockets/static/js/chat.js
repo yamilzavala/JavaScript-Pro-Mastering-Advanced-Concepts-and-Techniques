@@ -1,7 +1,10 @@
 // CLIENT SIDE JS CODE!!!
 
+//extract the room name from url
+const urlParts = document.URL.split('/');
+const roomName = urlParts.at(-1);
 // Open websocket connection from the browser to the server
-const socket = new WebSocket('ws://localhost:3000/chat/people')
+const socket = new WebSocket(`ws://localhost:3000/chat/${roomName}`)
 //ask user name to user
 const username = prompt('Enter a user name (no spaces)')
 
@@ -25,9 +28,7 @@ socket.onmessage = (evt) => {
     document.querySelector('#messages').appendChild(item);
   } else if(msg.type === 'chat') {
     const item = document.createElement('li');
-    const text = document.createElement('i');
-    text.textContent = msg.text;
-    item.appendChild(text);
+    item.innerHTML = `<b>${msg.name}</b> ${msg.text}` 
     document.querySelector('#messages').appendChild(item);
   }
 }

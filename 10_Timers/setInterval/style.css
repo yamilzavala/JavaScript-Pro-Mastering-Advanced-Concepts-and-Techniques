@@ -1,0 +1,8 @@
+.box {
+    margin: 2rem;
+    width: 100px;
+    height: 100px;
+    background-color: lightgreen;
+    border: solid 1px green;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
